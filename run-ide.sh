@@ -1,8 +1,5 @@
-# /home/anton/code/run-idea.sh idea /home/anton/code/.env.run-idea
-
-function exitWithMsg() {
-  echo $1; exit 1
-}
+#!/usr/bin/env bash
+set -eu
 
 function openProjects() {
     if [ -z "$1" ]; then
@@ -17,17 +14,14 @@ function openProjects() {
     done
 }
 
-if [ $# -eq 0 ]; then
-  ENV_FILE=/home/senioravanti/projects/devops/scripts/.env.run-idea
-fi
+ENV_FILE="/home/senioravanti/.config/scripts/.env.run-idea"
 
 if [ ! -f "$ENV_FILE" ]; then
-  exitWithMsg 'no .env file !'
+	echo "env file \`${ENV_FILE}\` does not exist"
+	exit 1
 fi 
 
 set -a ; source "$ENV_FILE" ; set +a
-if [ -z "$PROJECTS" ]; then
-  exitWithMsg 'projects variable is missing'
-fi
 
 openProjects $PROJECTS
+
