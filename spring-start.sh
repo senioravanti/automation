@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 
-ENV_FILE="/home/senioravanti/.config/scripts/.env.spring-start"
+ENV_FILE="${HOME}/.config/scripts/.env.spring-start"
 
 if [ ! -f "$ENV_FILE" ]; then
 	echo "env file \`${ENV_FILE}\` does not exist"
